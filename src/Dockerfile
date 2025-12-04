@@ -21,8 +21,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the code
 COPY . .
 
-# Copy .env file into the image (for python-dotenv)
-COPY .env .env
+# Create .env from a BuildKit secret named ENV (for python-dotenv)
+# Requires docker/build-push-action with: secrets: ENV=<secret>
+RUN --mount=type=secret,id=ENV,target=/tmp/ENV cat /tmp/ENV > .env
 
 # Expose the port (default FastAPI/uvicorn port)
 EXPOSE 8000
