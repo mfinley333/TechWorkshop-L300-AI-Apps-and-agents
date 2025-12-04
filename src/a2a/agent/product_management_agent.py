@@ -262,6 +262,7 @@ class SemanticKernelProductManagementAgent:
             ),
         )
 
+
     async def invoke(self, user_input: str, session_id: str) -> dict[str, Any]:
         """Handle synchronous tasks (like tasks/send).
 
